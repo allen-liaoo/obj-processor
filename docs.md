@@ -4,9 +4,10 @@ A matcher takes a schema, comparing it with the value it is matching against, (r
 
 ### Configurations
 A config applies to all matches made by a matcher. Each config has a name and some values. If the config name or value isn’t recognized, an error will be thrown
-1. mode: rec | nonrec
-   - In recursive mode, the schema is taken and matched on each inner-object and array, until recDepth is reached
-   - In nonrec mode, the schema is taken and matched on the value straightforwardly
+1. `rec: boolean | number` (default: false)
+   - If `rec` is true, matching is done in recursive mode, where the schema is taken and matched on each nested-object and array, until there are no more to match (equivalent to `rec=-1`)
+   - In nonrec mode, the schema is taken and matched on the value straightforwardly (equivalent to `rec=0`)
+   - If `rec` is a number, it is the depth limit of the recursion. 
 2. recDepth: number - the depth of the recursion, -1 for no limit (default: -1). Setting it to 0 is identical to nonrec mode
 3. result: any - the default value of the result (default: undefined). To collect a list of results, you can use an empty list.
 4. processors: array of processor name and processor association  
@@ -74,14 +75,16 @@ The below functions are bundled at validators.bundle. To use the bundle without 
     2. not() – flips the result of the next function call
     3. equal(v) – is equal to v
     4. default(v) – set default value if value does not exist
+    5. satisfies(predicate) - must satisfy the predicate
 2. Type
     1. number()
     2. int()
     3. posInt()
     4. bool()
     5. array()
-    6. email([domain]) - matching some domain
-    7. date()
+    6. string()
+    7. email([domain]) - matching some domain
+    8. date()
 3. String/Array
     1. minLen(n)
     2. maxLen(m)
@@ -138,7 +141,7 @@ SchemaWrapper: {
     `wrapper.obj_schema[newKey] = valSchema`
 
 
-#### matchRec() procesure (internal)
+#### matchRec() procedure (internal)
 Given a schema wrapper, value, and config:
 
 #### match() procedure (internal)

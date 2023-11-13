@@ -1,0 +1,23 @@
+{
+  "name": "obj-processor",
+  "version": "0.1.0",
+  "description": "",
+  "main": "lib/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/allen-liaoo/obj-processor.git"
+  },
+  "author": "Allen Liao",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/allen-liaoo/obj-processor/issues"
+  },
+  "homepage": "https://github.com/allen-liaoo/obj-processor#readme",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
